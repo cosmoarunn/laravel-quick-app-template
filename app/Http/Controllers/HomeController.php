@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +26,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'dark_mode' => session()->has('dark_mode') ? !session()->get('dark_mode') : false,
+            'layout' => 'sidenav',
         ]);
     }
 
@@ -46,5 +47,23 @@ class HomeController extends Controller
             'cancel_url' => $YOUR_DOMAIN . '/cancel',
           ]);
     }    
+
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+    
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
+    }
     
 }

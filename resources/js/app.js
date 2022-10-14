@@ -15,7 +15,6 @@ import "./modal";
 import "./svg-loader";
 import "./tab";
 
-
 import "./chart";
 import "./highlight";
 import "./feather";

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,23 +12,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('dark-mode-switcher', [App\Http\Controllers\DarkModeController::class, 'switch'])->name('dark-mode-switcher');
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
-    //Route::get('/plans', 'SubscriptionPlanController@index')->name('plans.index');
-    Route::get('plans', [App\Http\Controllers\StripePlanController::class, 'index'])->name('subscription-view');
-    Route::get('show', [App\Http\Controllers\StripePlanController::class, 'show'])->name('subscription-show');
-      
+    
+    //Auth
+    Route::get('logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 
-    Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');
-
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  
 });

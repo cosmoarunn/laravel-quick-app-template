@@ -1,6 +1,6 @@
 .content {
     border-radius: 35px/50px 0px 0px 0px;
-    @apply min-w-0 min-h-screen  flex-1 pb-10 px-6 relative ml-0 text-theme-1 dark:text-white; //dark:bg-dark-1;
+    @apply min-w-0 min-h-screen  flex-1 mt-10 pb-10 px-6 relative ml-0 text-theme-1 dark:text-white; //dark:bg-dark-1;
     @include media-breakpoint-down(md) {
         border-radius: 0px;
         @apply px-4 max-w-full ml-0;
